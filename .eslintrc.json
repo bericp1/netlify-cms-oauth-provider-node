@@ -1,0 +1,36 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jest/globals": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "standard",
+        "plugin:node/recommended",
+        "prettier",
+        "prettier/standard"
+    ],
+    "plugins": ["jest"],
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+        "node/prefer-global/buffer": ["error", "always"],
+        "node/prefer-global/console": ["error", "always"],
+        "node/prefer-global/process": ["error", "always"],
+        "node/prefer-global/url-search-params": ["error", "always"],
+        "node/prefer-global/url": ["error", "always"],
+        "node/no-unsupported-features/es-syntax": ["error"],
+        "node/no-unsupported-features/es-builtins": ["error"],
+        "curly": ["error", "all"],
+        "max-len": ["error", { "code": 140, "ignoreUrls": true }],
+        "no-undefined": "error",
+        "camelcase": "error",
+        "no-confusing-arrow": "error",
+        "no-var": "error",
+        "no-console": "off"
+    }
+}

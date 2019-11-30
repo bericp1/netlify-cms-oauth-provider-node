@@ -1,0 +1,71 @@
+{
+    "name": "netlify-cms-oauth-provider-node",
+    "version": "0.0.0-development",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "lint": "eslint '{*,{src,docs}/**/*,__{tests,mocks}__/**/*}.js' || true",
+        "pretty": "prettier --write '{*,{src,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml,js}'",
+        "fixcode": "yarn run pretty",
+        "semantic-release": "semantic-release",
+        "release": "yarn run semantic-release",
+        "release-ci": "echo 'unsafe-perm = true' > ./.npmrc && yarn run semantic-release && rm -rf ./.npmrc",
+        "commit": "git-cz"
+    },
+    "repository": "https://github.com/bericp1/netlify-cms-oauth-provider-node",
+    "author": "Brandon Phillips <bericp1@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "devDependencies": {
+        "@commitlint/cli": "^7.5.2",
+        "@commitlint/config-conventional": "^7.5.0",
+        "commitizen": "^3.0.7",
+        "cz-conventional-changelog": "2.1.0",
+        "eslint": "^6.7.2",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jest": "^23.1.0",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "husky": "^1.3.1",
+        "jest": "^24.5.0",
+        "lint-staged": "^8.1.5",
+        "prettier": "1.16.4",
+        "semantic-release": "^15.13.3"
+    },
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "{*,{src,docs}/**/*,__{tests,mocks}__/**/*}.js": [
+            "prettier --write",
+            "eslint",
+            "git add"
+        ],
+        "{*,{src,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "dependencies": {}
+}
