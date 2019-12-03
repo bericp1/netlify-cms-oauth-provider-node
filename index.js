@@ -1,5 +1,1 @@
-const createHandlers = require('./src/createHandlers');
-
-module.exports = {
-    createHandlers,
-};
+module.exports = require('./lib');
