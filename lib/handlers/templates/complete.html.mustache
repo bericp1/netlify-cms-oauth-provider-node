@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Logging you in via {{{oauthProviderDisplay}}}...</title>
+    <meta name="description" content="Logging you in via {{{oauthProviderDisplay}}}...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { text-align: center; }
+    </style>
+</head>
+<body>
+<p>{{display}}</p>
+<script>
+    (function() {
+        function log() {
+            if (console && console.log) {
+                console.log.apply(console, Array.prototype.slice.call(arguments));
+            }
+        }
+
+        if (window.opener) {
+            /**
+             * Handle message received from netflify-cms, completing the handshake
+             * @param {MessageEvent} e
+             */
+            function receiveMessage(e) {
+                log('Receiving message:', e);
+                if (!e.origin.match({{{originPattern}}})) {
+                    log('Invalid origin: %s', e.origin);
+                    return;
+                }
+
+                // Send the message to netlify-cms
+                var message = 'authorization:{{{oauthProvider}}}:{{{message}}}:{{{content}}}';
+                log('Sending message:', message);
+                window.opener.postMessage(message, e.origin);
+            }
+            window.addEventListener('message', receiveMessage, false);
+
+            // Initiate handshake with netlify-cms
+            var handshakeMessage = 'authorizing:{{{oauthProvider}}}';
+            log('Sending message:', handshakeMessage);
+            window.opener.postMessage(handshakeMessage, '*');
+        } else {
+            log('No opener. Not doing anything. Are you lost?');
+        }
+    })();
+</script>
+</body>
+</html>

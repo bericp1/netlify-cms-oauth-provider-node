@@ -70,6 +70,9 @@
     "dependencies": {
         "convict": "^5.2.0",
         "debug": "^4.1.1",
-        "ramda": "^0.26.1"
+        "mustache": "^3.1.0",
+        "ramda": "^0.26.1",
+        "randomstring": "^1.1.5",
+        "simple-oauth2": "^3.1.0"
     }
 }
