@@ -6,8 +6,8 @@
     "scripts": {
         "test": "jest",
         "test:watch": "jest --watch",
-        "lint": "eslint '{*,{src,docs}/**/*,__{tests,mocks}__/**/*}.js' || true",
-        "pretty": "prettier --write '{*,{src,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml,js}'",
+        "lint": "eslint '{*,{lib,docs}/**/*,__{tests,mocks}__/**/*}.js' || true",
+        "pretty": "prettier --write '{*,{lib,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml,js}'",
         "fixcode": "yarn run pretty",
         "semantic-release": "semantic-release",
         "release": "yarn run semantic-release",
@@ -47,12 +47,12 @@
         }
     },
     "lint-staged": {
-        "{*,{src,docs}/**/*,__{tests,mocks}__/**/*}.js": [
+        "{*,{lib,docs}/**/*,__{tests,mocks}__/**/*}.js": [
             "prettier --write",
             "eslint",
             "git add"
         ],
-        "{*,{src,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml}": [
+        "{*,{lib,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml}": [
             "prettier --write",
             "git add"
         ]
@@ -67,5 +67,13 @@
             "@commitlint/config-conventional"
         ]
     },
-    "dependencies": {}
+    "dependencies": {
+        "convict": "^5.2.0",
+        "debug": "^4.1.1",
+        "escape-string-regexp": "^2.0.0",
+        "mustache": "^3.1.0",
+        "ramda": "^0.26.1",
+        "randomstring": "^1.1.5",
+        "simple-oauth2": "^3.1.0"
+    }
 }
