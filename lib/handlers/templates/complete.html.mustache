@@ -11,12 +11,30 @@
     </style>
 </head>
 <body>
-<p>{{display}}</p>
+<p class="display">{{display}}</p>
+<p class="origin-error" hidden>
+    Couldn't verify you came from an authorized website. To protect your account, you'll need to return to
+    <a href="{{returnLink.url}}" target="{{returnLink.target}}" class="return-link">the admin panel</a> and try
+    to log in again.
+</p>
 <script>
     (function() {
         function log() {
             if (console && console.log) {
                 console.log.apply(console, Array.prototype.slice.call(arguments));
+            }
+        }
+
+        // Attach a listener to the return link to handle closing the window
+        if (document.getElementsByClassName) {
+            var returnLinks = document.getElementsByClassName('return-link');
+            for (let i = 0, numReturnLinks = returnLinks.length || 0; i < numReturnLinks; i++) {
+                returnLinks[i].addEventListener('click', function (event) {
+                    if (event.target.href === '#') {
+                        event.preventDefault();
+                    }
+                    window.close();
+                }, false);
             }
         }
 
@@ -27,15 +45,29 @@
              */
             function receiveMessage(e) {
                 log('Receiving message:', e);
-                if (!e.origin.match({{{originPattern}}})) {
+                var origin = e.origin === 'null' ? false : e.origin;
+                if (!origin || !origin.match({{{originPattern}}})) {
                     log('Invalid origin: %s', e.origin);
+                    if (document.getElementsByClassName) {
+                        var display = document.getElementsByClassName('display');
+                        if (display && display.length) {
+                            display[0].hidden = true;
+                        }
+                        var originError = document.getElementsByClassName('origin-error');
+                        if (originError && originError.length) {
+                            originError[0].hidden = false;
+                        }
+                    }
                     return;
                 }
+
+                // Remove our event listener to avoid an infinite loop
+                window.removeEventListener('message', receiveMessage, false);
 
                 // Send the message to netlify-cms
                 var message = 'authorization:{{{oauthProvider}}}:{{{message}}}:{{{content}}}';
                 log('Sending message:', message);
-                window.opener.postMessage(message, e.origin);
+                window.opener.postMessage(message, origin);
             }
             window.addEventListener('message', receiveMessage, false);
 
