@@ -70,6 +70,7 @@
     "dependencies": {
         "convict": "^5.2.0",
         "debug": "^4.1.1",
+        "escape-string-regexp": "^2.0.0",
         "mustache": "^3.1.0",
         "ramda": "^0.26.1",
         "randomstring": "^1.1.5",
