@@ -1,0 +1,9 @@
+<script>
+    (function() {
+        window.log = function log() {
+            if (console && console.log) {
+                console.log.apply(console, Array.prototype.slice.call(arguments));
+            }
+        };
+    })();
+</script>

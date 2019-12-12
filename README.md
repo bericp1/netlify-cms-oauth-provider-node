@@ -1,5 +1,11 @@
 # `netlify-cms-oauth-provider-node`
 
+---
+
+This is package is currently a **work in progress** and does not work (yet!).
+
+---
+
 A stateless [external OAuth provider](https://www.netlifycms.org/docs/authentication-backends/#external-oauth-clients)
 for `netlify-cms`.
 

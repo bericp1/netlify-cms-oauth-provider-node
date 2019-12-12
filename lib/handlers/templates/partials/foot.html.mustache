@@ -1,0 +1,18 @@
+<script>
+    (function () {
+        // Attach a listener to any links with the "close-link" class that will close the window
+        if (document.getElementsByClassName) {
+            var closeLinks = document.getElementsByClassName('close-link');
+            for (var i = 0, numCloseLinks = closeLinks.length || 0; i < numCloseLinks; i++) {
+                closeLinks[i].addEventListener('click', function (event) {
+                    if (event.target && event.target.href === '#') {
+                        event.preventDefault();
+                    }
+                    window.close();
+                }, false);
+            }
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,43 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Logging you in via {{{oauthProviderDisplay}}}...</title>
-    <meta name="description" content="Logging you in via {{{oauthProviderDisplay}}}...">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { text-align: center; }
-    </style>
-</head>
-<body>
-<p class="display">{{display}}</p>
-<p class="origin-error" hidden>
+{{>head.html}}
+<p class="display{{#displayClasses}} {{displayClasses}}{{/displayClasses}}">{{display}}</p>
+<p class="error origin-error" hidden>
     Couldn't verify you came from an authorized website. To protect your account, you'll need to return to
-    <a href="{{returnLink.url}}" target="{{returnLink.target}}" class="return-link">the admin panel</a> and try
-    to log in again.
+    {{>admin-panel-link.html}} and try to log in again.
 </p>
+{{>common-scripts.html}}
 <script>
     (function() {
-        function log() {
-            if (console && console.log) {
-                console.log.apply(console, Array.prototype.slice.call(arguments));
-            }
-        }
-
-        // Attach a listener to the return link to handle closing the window
-        if (document.getElementsByClassName) {
-            var returnLinks = document.getElementsByClassName('return-link');
-            for (let i = 0, numReturnLinks = returnLinks.length || 0; i < numReturnLinks; i++) {
-                returnLinks[i].addEventListener('click', function (event) {
-                    if (event.target.href === '#') {
-                        event.preventDefault();
-                    }
-                    window.close();
-                }, false);
-            }
-        }
-
         if (window.opener) {
             /**
              * Handle message received from netflify-cms, completing the handshake
@@ -80,5 +49,4 @@
         }
     })();
 </script>
-</body>
-</html>
+{{>foot.html}}

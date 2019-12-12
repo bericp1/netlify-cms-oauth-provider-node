@@ -1,0 +1,13 @@
+{{>head.html}}
+<p class="error">
+    {{#message}}
+        {{message}}
+    {{/message}}
+    {{^message}}
+        An unknown error occurred.
+    {{/message}}
+</p>
+<p class="error">
+    Please return to {{>admin-panel-link.html}} and try to log in again.
+</p>
+{{>foot.html}}
