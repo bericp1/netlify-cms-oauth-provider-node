@@ -1,0 +1,15 @@
+{
+    "name": "netlify-cms-oauth-provider-node-now-example",
+    "private": true,
+    "scripts": {
+        "start": "now dev",
+        "clean": "rm -rf public/",
+        "build": "yarn run clean && mkdir public && cp index.html config.yml public/"
+    },
+    "engines": {
+        "node": "10.x"
+    },
+    "dependencies": {
+        "netlify-cms-oauth-provider-node": "latest"
+    }
+}

@@ -1,0 +1,17 @@
+backend:
+    name: github
+    repo: bericp1/netlify-cms-oauth-provider-node
+    branch: master
+    base_url: http://localhost:3000
+    auth_endpoint: api/begin
+publish_mode: editorial_workflow
+media_folder: "examples/now/images/uploads"
+collections:
+    - name: "pages"
+      label: "Pages"
+      folder: "examples/now/pages"
+      create: true
+      slug: "{{slug}}"
+      fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}

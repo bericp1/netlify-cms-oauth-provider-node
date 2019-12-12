@@ -18,6 +18,20 @@
     "author": "Brandon Phillips <bericp1@gmail.com>",
     "license": "MIT",
     "private": false,
+    "files": [
+        "lib",
+        ".eslintignore",
+        ".eslintrc.json",
+        ".gitignore",
+        ".prettierignore",
+        ".prettierrc.json",
+        "index.js",
+        "jest.config.js",
+        "LICENSE",
+        "package.json",
+        "README.md",
+        "yarn.lock"
+    ],
     "devDependencies": {
         "@commitlint/cli": "^7.5.2",
         "@commitlint/config-conventional": "^7.5.0",
@@ -74,6 +88,7 @@
         "mustache": "^3.1.0",
         "ramda": "^0.26.1",
         "randomstring": "^1.1.5",
-        "simple-oauth2": "^3.1.0"
+        "simple-oauth2": "^3.1.0",
+        "verror": "^1.10.0"
     }
 }
