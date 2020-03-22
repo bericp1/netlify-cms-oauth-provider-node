@@ -3,3 +3,5 @@ public/
 
 # Note that we want this example to always use the latest version of the main package so we don't lock
 yarn.lock
+
+.now
