@@ -3,7 +3,7 @@ backend:
     repo: bericp1/netlify-cms-oauth-provider-node
     branch: master
     base_url: http://localhost:3000
-    auth_endpoint: api/begin
+    auth_endpoint: api/admin/auth/begin
 publish_mode: editorial_workflow
 media_folder: "examples/common/images/uploads"
 collections:
