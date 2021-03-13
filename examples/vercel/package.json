@@ -4,12 +4,14 @@
     "scripts": {
         "start": "vercel dev",
         "clean": "rm -rf public/",
-        "build": "yarn run clean && mkdir public && cp index.html config.yml public/"
+        "build": "yarn run clean && mkdir public && cp admin.html config.yml public/ && node ./build.js"
     },
     "engines": {
-        "node": "10.x"
+        "node": "14.x"
     },
     "dependencies": {
+        "front-matter": "^4.0.2",
+        "marked": "^2.0.1",
         "netlify-cms-oauth-provider-node": "latest"
     }
 }
