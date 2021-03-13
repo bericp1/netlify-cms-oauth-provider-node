@@ -9,8 +9,7 @@
         "eslint:recommended",
         "standard",
         "plugin:node/recommended",
-        "prettier",
-        "prettier/standard"
+        "prettier"
     ],
     "plugins": ["jest"],
     "parserOptions": {
