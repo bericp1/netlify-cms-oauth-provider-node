@@ -1,6 +1,6 @@
 # `netlify-cms-oauth-provider-node`
 
-![](https://img.shields.io/npm/v/netlify-cms-oauth-provider-node)
+[![](https://img.shields.io/npm/v/netlify-cms-oauth-provider-node)](https://www.npmjs.com/package/netlify-cms-oauth-provider-node)
 
 A stateless [external OAuth provider](https://www.netlifycms.org/docs/authentication-backends/#external-oauth-clients)
 for `netlify-cms`.
