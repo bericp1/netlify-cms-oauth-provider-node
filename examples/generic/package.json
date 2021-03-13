@@ -1,5 +1,5 @@
 {
-    "name": "netlify-cms-oauth-provider-node-now-example",
+    "name": "netlify-cms-oauth-provider-node-generic-example",
     "private": true,
     "main": "index.js",
     "scripts": {

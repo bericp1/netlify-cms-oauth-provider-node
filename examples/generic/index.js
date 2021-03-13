@@ -1,8 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const frontmatter = require('front-matter');
-const marked = require('marked');
+const { render } = require('../common/render'); // eslint-disable-line node/no-unpublished-require
 const netlifyCmsOAuth = require('netlify-cms-oauth-provider-node');
 
 const port = process.env.PORT || 3000;
@@ -134,25 +133,8 @@ const handleAdmin = createStaticFileHandler('admin.html', 'text/html; charset=ut
  *      otherwise.
  */
 async function handlePage(req, res, { route }) {
-    // Resolve the path to the possible markdown file
-    const fullPathToPossibleMarkdownFile = path.resolve(
-        __dirname,
-        '../common/pages',
-        `${route.replace(/^\//, '')}.md`,
-    );
-    // Attempt to read the file, returning false ("no I did not handle this request") if any error occurs reading the file.
-    let markdownFileContents = null;
-    try {
-        markdownFileContents = await fs.promises.readFile(fullPathToPossibleMarkdownFile, { encoding: 'utf8' });
-    } catch (ignored) {
-        return false;
-    }
-    // Parse the file first using `front-matter` and `marked`
-    const fileFrontmatter = frontmatter(markdownFileContents);
-    const htmlFileContents = marked(fileFrontmatter.body);
-    // Generate the HTML, using the frontmatter to generate the title.
-    const finalHtml = `<html lang="en"><head><title>${fileFrontmatter.attributes.title || ''}</title>`
-        + `</head><body>\n${htmlFileContents}</body></html>`;
+    const pageName = route.replace(/^\//, '');
+    const finalHtml = await render(pageName);
     // Serve the HTML to the user.
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(finalHtml);
