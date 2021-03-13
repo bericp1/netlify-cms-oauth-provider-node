@@ -12,7 +12,8 @@
         "semantic-release": "semantic-release",
         "release": "yarn run semantic-release",
         "release-ci": "echo 'unsafe-perm = true' > ./.npmrc && yarn run semantic-release && rm -rf ./.npmrc",
-        "commit": "git-cz"
+        "commit": "git-cz",
+        "prepare": "husky install"
     },
     "repository": "https://github.com/bericp1/netlify-cms-oauth-provider-node",
     "author": "Brandon Phillips <bericp1@gmail.com>",
@@ -54,21 +55,13 @@
     "engines": {
         "node": ">=10.0.0"
     },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
         "{*,{lib,docs}/**/*,__{tests,mocks}__/**/*}.js": [
             "prettier --write",
-            "eslint",
-            "git add"
+            "eslint"
         ],
         "{*,{lib,docs,.github}/**/*,__{tests,mocks}__/**/*}.{json,md,yml}": [
-            "prettier --write",
-            "git add"
+            "prettier --write"
         ]
     },
     "config": {
