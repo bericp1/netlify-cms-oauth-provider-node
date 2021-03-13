@@ -1,13 +1,14 @@
-# Zeit Now Serverless Functions Examples
+# Zeit Vercel Serverless Functions Examples
 
 ## Prerequisites
 
--   [The `now` CLI](https://zeit.co/download): `npm i -g now@latest`
+-   [The `vercel` CLI](https://zeit.co/download): `npm i -g vercel@latest`
 
 ## Instructions
 
 **Note:** Right now this example _does not_ use the local source files in the serverless functions inside
-[`api/`](./api) since, at the time of this writing, `now dev` does not support symlinked packages or local dependencies.
+[`api/`](./api) since, at the time of this writing, `vercel dev` does not support symlinked packages or
+local dependencies.
 
 1.  Install the latest version of the main package as a dep to this example:
     ```shell script

@@ -1,8 +1,8 @@
 {
-    "name": "netlify-cms-oauth-provider-node-now-example",
+    "name": "netlify-cms-oauth-provider-node-vercel-example",
     "private": true,
     "scripts": {
-        "start": "now dev",
+        "start": "vercel dev",
         "clean": "rm -rf public/",
         "build": "yarn run clean && mkdir public && cp index.html config.yml public/"
     },

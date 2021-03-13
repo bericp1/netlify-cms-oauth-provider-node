@@ -5,15 +5,15 @@ for `netlify-cms`.
 
 This package exposes an API that makes it easy to use in a traditional long-running Node server (i.e. using `express`)
 or in stateless serverless functions (i.e.
-[Zeit Now Serverless Functions](https://zeit.co/docs/v2/serverless-functions/introduction)).
+[Vercel Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)).
 
 ## Usage
 
-**Note:** More detailed documentation and inline code samples are in the works. For now it's best to check out the
+**Note:** More detailed documentation and inline code samples are in the works. For now, it's best to check out the
 examples:
 
 -   [Generic Node HTTP server](./examples/generic)
--   [Zeit Now functions](./examples/now)
+-   [Vercel functions](./examples/vercel)
 
 ### Overview
 
@@ -22,9 +22,9 @@ This library exports handler-creating functions:
 -   `createBeginHandler(config: object, options: CreateConfigOptions): function(state: string=): Promise<string>`
 -   `createCompleteHandler(config: object, options: CreateConfigOptions): function(code: string=, params: object=): Promise<string>`
 -   `createHandlers(config: object, options: CreateConfigOptions): ({ begin: (function(state: string=): Promise<string>), complete: (function(code: string=, params: object=): Promise<string>) })`
--   `createNowBeginHandler(config: object, options: CreateConfigOptions): AsyncNowServerlessFunction`
--   `createNowCompleteHandler(config: object, options: CreateConfigOptions): AsyncNowServerlessFunction`
--   `createNowHandlers(config: object, options: CreateConfigOptions): ({ begin: AsyncNowServerlessFunction, complete: AsyncNowServerlessFunction })`
+-   `createVercelBeginHandler(config: object, options: CreateConfigOptions): AsyncVercelServerlessFunction`
+-   `createVercelCompleteHandler(config: object, options: CreateConfigOptions): AsyncVercelServerlessFunction`
+-   `createVercelHandlers(config: object, options: CreateConfigOptions): ({ begin: AsyncVercelServerlessFunction, complete: AsyncVercelServerlessFunction })`
 
 They do the following:
 
@@ -38,12 +38,12 @@ They do the following:
         the authorization code with the provider to netlify-cms.
     -   `createHandlers`: Creates both of the above handlers and returns an object containing them on the `begin` and
         `complete` keys.
--   Zeit Now Handlers
-    -   `createNowBeginHandler`: Creates an async Zeit Now serverless function that handles everything for you and
+-   Vercel Handlers
+    -   `createVercelBeginHandler`: Creates an async Vercel serverless function that handles everything for you and
         delegates to the generic begin handler described above.
-    -   `createCompleteHandler`: Creates an async Zeit Now serverless function that handles everything for you and
+    -   `createVercelCompleteHandler`: Creates an async Vercel serverless function that handles everything for you and
         delegates to the generic complete handler described above.
-    -   `createNowHandlers`: Creates both of the above async Zeit Now serverless functions and returns an object containing
+    -   `createVercelHandlers`: Creates both of the above async Vercel serverless functions and returns an object containing
         them on the `begin` and `complete` keys.
 
 That's a lot to digest but essentially:
